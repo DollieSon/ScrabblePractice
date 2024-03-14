@@ -1,15 +1,23 @@
 import ScrabbleLib.DictionaryCollin;
-import ScrabbleLib.WordPoints;
+import ScrabbleLib.WordGenerator;
+import ScrabbleLib.WordGroup;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        DictionaryCollin Dc = new DictionaryCollin();
-        System.out.println(Dc.getWord("has"));
+        WordGenerator Wg = new WordGenerator("Hello");
+        Set<String> combs = Wg.GetCombinations();
+        ArrayList<WordGroup> some = Wg.getValidWords();
+
+        System.out.println("Done");
+    }
+
+    public void StartGame(){
 
     }
+
+
 }

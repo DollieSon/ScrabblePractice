@@ -5,18 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class DictionaryCollin {
+    //Make Sinlgeton?
     HashMap<String,WordGroup> WordScoreMap;
+    static DictionaryCollin me;
 
-    public DictionaryCollin(){
-        /*
-         * "Sorted" {
-         *       "Unsorted" : set
-         *      Score
-         *  }
-         *
-         *
-        */
-
+    private DictionaryCollin(){
         WordScoreMap = new HashMap<>();
 
         File dictextfile = new File("./ExternFiles/WordList.txt");
@@ -27,19 +20,30 @@ public class DictionaryCollin {
             throw new RuntimeException(e);
         }
         while(Reader.hasNextLine()){
-            String word = Reader.nextLine();
+            String word = Reader.nextLine().toLowerCase();
             String sorted = sortString(word);
             if(!WordScoreMap.containsKey(sorted)){
                 WordScoreMap.put(sorted,new WordGroup(sorted));
             }
             WordScoreMap.get(sorted).group.add(word);
         }
+        Reader.close();
+        System.out.println( WordScoreMap.containsKey("ehllo"));
     }
+
+    public static DictionaryCollin getDictionaryCollin(){
+        if(me == null){
+            me = new DictionaryCollin();
+        }
+        return me;
+    }
+
 
     public int getWord(String word){
 
         String sorted = sortString(word);
-        if(WordScoreMap.get(sorted).group.contains(sorted)){
+        WordGroup wg = WordScoreMap.get(sorted);
+        if(wg != null && wg.group.contains(sorted)){
             return WordScoreMap.get(sorted).score;
         }
         return -1;
@@ -48,7 +52,12 @@ public class DictionaryCollin {
     public static String sortString(String word){
         char[] char_arr = word.toCharArray();
         Arrays.sort(char_arr);
-        String sorted = String.valueOf(char_arr);
-        return sorted;
+        return String.valueOf(char_arr);
     }
+
+    //Send a SortedWord
+    public WordGroup getWordGroup(String SortedWord){
+        return WordScoreMap.get(SortedWord);
+    }
+
 }
