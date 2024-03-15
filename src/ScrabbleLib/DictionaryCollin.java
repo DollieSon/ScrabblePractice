@@ -21,7 +21,7 @@ public class DictionaryCollin {
         }
         while(Reader.hasNextLine()){
             String word = Reader.nextLine().toLowerCase();
-            String sorted = sortString(word);
+            String sorted = ScrabbleHelpers.sortString(word);
             if(!WordScoreMap.containsKey(sorted)){
                 WordScoreMap.put(sorted,new WordGroup(sorted));
             }
@@ -41,7 +41,7 @@ public class DictionaryCollin {
 
     public int getWord(String word){
 
-        String sorted = sortString(word);
+        String sorted = ScrabbleHelpers.sortString(word);
         WordGroup wg = WordScoreMap.get(sorted);
         if(wg != null && wg.group.contains(sorted)){
             return WordScoreMap.get(sorted).score;
@@ -49,11 +49,6 @@ public class DictionaryCollin {
         return -1;
     }
     //Helper Function
-    public static String sortString(String word){
-        char[] char_arr = word.toCharArray();
-        Arrays.sort(char_arr);
-        return String.valueOf(char_arr);
-    }
 
     //Send a SortedWord
     public WordGroup getWordGroup(String SortedWord){

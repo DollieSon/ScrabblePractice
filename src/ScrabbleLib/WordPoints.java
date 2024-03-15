@@ -41,4 +41,5 @@ public class WordPoints {
         return points;
     }
 
+
 }

@@ -1,6 +1,5 @@
-import ScrabbleLib.DictionaryCollin;
 import ScrabbleLib.RandGen;
-import ScrabbleLib.WordGenerator;
+import ScrabbleLib.WordCombinator;
 import ScrabbleLib.WordGroup;
 
 import java.util.*;
@@ -9,16 +8,36 @@ import java.util.*;
 // then press Enter. You can now see whitespace characters in your code.
 
 public class Main {
-      public static void main(String[] args) {
-        System.out.println((int) 'a'+" "+ (int) 'z');
-        RandGen rg = new RandGen(10);
-        System.out.println(rg.getRandString());
-        System.out.println("Done");
+    public static void main(String[] args) {
+        StartGame();
+
+
+      }
+    public static void StartGame(){
+        boolean isGaming =true;
+        int wordcount = 5;
+        while(isGaming){
+            //ask for wordcount
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter the wordcount");
+            wordcount = sc.nextInt();
+            sc.nextLine();
+            RandGen CharGen = new RandGen(wordcount);
+            String charSet = CharGen.getRandString();
+            WordCombinator Combi = new WordCombinator(charSet);
+            HashMap<String, WordGroup> HG = Combi.getMappedWords();
+
+
+
+            //Continue or Quit
+            System.out.println("Quit or Continue?: Y/N");
+            String answer = sc.nextLine();
+            if(answer.equals("N")){
+                isGaming = false;
+            }
+        }
     }
 
-    public void StartGame(){
-
-    }
 
 
 }

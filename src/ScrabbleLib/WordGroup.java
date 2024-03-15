@@ -12,6 +12,10 @@ public class WordGroup{
         group = new HashSet<>();
         score = WordPoints.getPoints(word);
     }
-
     public static Comparator<WordGroup> DecreasingScore = (o1, o2) -> Integer.compare(o2.score,o1.score);
+
+    public String getSorted(){
+        return ScrabbleHelpers.sortString(group.iterator().next());
+    }
+
 }

@@ -2,14 +2,14 @@ package ScrabbleLib;
 
 import java.util.*;
 
-public class WordGenerator {
+public class WordCombinator {
 //    ArrayList<>
     //BitSet
     //Incremennt until 2 ^ wordlen
     char[] chars;
     String word;
-    public WordGenerator(String word){
-        this.word = DictionaryCollin.sortString(word.toLowerCase());
+    public WordCombinator(String word){
+        this.word = ScrabbleHelpers.sortString(word.toLowerCase());
         chars = this.word.toCharArray();
     }
 
@@ -65,6 +65,15 @@ public class WordGenerator {
         }
         ValidWords.sort(WordGroup.DecreasingScore);
         return ValidWords;
+
+    }
+    public HashMap<String,WordGroup> getMappedWords(){
+        ArrayList<WordGroup> ValWords = getValidWords();
+        HashMap<String,WordGroup> VW = new HashMap<>();
+        for(WordGroup group: ValWords) {
+            VW.put(group.getSorted(),group);
+        }
+        return VW;
     }
 
 }
