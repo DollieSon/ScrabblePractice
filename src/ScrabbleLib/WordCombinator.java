@@ -16,7 +16,7 @@ public class WordCombinator {
     public Set<String> GetCombinations(){
         Set<String> Combinations = new HashSet<>();
         int Max = (1 << word.length());
-        System.out.println("Max: "+Max);
+        //System.out.println("Max: "+Max);
         BitSet chosen;
         String mWord; // maybe Word
         for (int i = 1; i < Max; i++) {
@@ -24,7 +24,7 @@ public class WordCombinator {
             mWord = bsToString(chosen);
             Combinations.add(mWord);
         }
-        System.out.println("Found sets: " + Combinations.size());
+        //System.out.println("Found sets: " + Combinations.size());
         return Combinations;
     }
     //Helper Function

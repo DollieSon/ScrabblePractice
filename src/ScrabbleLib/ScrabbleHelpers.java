@@ -2,6 +2,8 @@ package ScrabbleLib;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ScrabbleHelpers {
 
@@ -15,4 +17,6 @@ public class ScrabbleHelpers {
         Arrays.sort(char_arr);
         return String.valueOf(char_arr);
     }
+
+
 }
