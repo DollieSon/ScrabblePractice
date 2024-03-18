@@ -19,6 +19,7 @@ public class Main {
         int wordcount = 5;
         while(isGaming){
             //ask for wordcount
+            Set<String> givenWords = new HashSet<>();
             Scanner sc = new Scanner(System.in);
             System.out.print("Enter the wordcount:");
             wordcount = sc.nextInt();
@@ -32,16 +33,24 @@ public class Main {
             System.out.println("Characters: " + charSet);
             //Start Game
             System.out.println("Enter Your Words");
-            int Tries = 2;
+            int Tries = 5;
+            int safeGuards = 5;
             while(Tries > 0){
                 System.out.println("Tries Left: " + Tries);
                 String theWord = sc.nextLine();
-                System.out.println("Word is " + theWord);
+                //System.out.println("Word is " + theWord);
                 String sortedWord = ScrabbleHelpers.sortString(theWord);
                 if(!Searched.containsKey(sortedWord)){
                     System.out.println(theWord + " is not Valid");
-                    continue;
+                    safeGuards--;
+                    if(safeGuards > 0)continue;
                 }
+                if(givenWords.contains(theWord)){
+                    System.out.println(theWord + "has already been given");
+                    safeGuards--;
+                    if(safeGuards > 0)continue;
+                }
+                givenWords.add(theWord);
                 int Score = Searched.get(sortedWord).score;
                 System.out.println("The Score is " + Score);
                 TotalScore += Score;
